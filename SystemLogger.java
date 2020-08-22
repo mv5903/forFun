@@ -1,7 +1,6 @@
 package forFun;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -9,6 +8,8 @@ import java.lang.management.OperatingSystemMXBean;
 import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
+
+import javax.swing.JFileChooser;
 /**
  * Logs all system information to one text file of the users choosing, based on a particular path.
  * @author matt
@@ -20,29 +21,14 @@ public class SystemLogger {
 		Scanner kbd = new Scanner(System.in);
 		File systemLogFile;
 		FileWriter writer;
-		String path;
-		//Helps determine when the file is valid or not
-		boolean exceptionOccured = false;
-		while (true) {
-			System.out.println(
-					"Enter an existing directory of where to put the System text file (example: C:\\users\\matt\\documents): ");
-			path = kbd.next();
-			try {
-				exceptionOccured = false;
-				systemLogFile = new File(path + "\\systemLogger.txt");
-				writer = new FileWriter(systemLogFile);
-			} catch (FileNotFoundException f) {
-				exceptionOccured = true;
-				System.out.println(
-						"You either inputted an incorrect path or you are writing to an unwritable directory. Please enter another valid path.");
-			}
-			if (!exceptionOccured) {
-				System.out.printf("Ok, putting systemLogger.txt in %s... ", path);
-				break;
-			}
+		System.out.println("Choose a folder to store the System Log text file...");
+		try {
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		//Create the file:
-		systemLogFile = new File(path + "\\systemLogger.txt");
+		systemLogFile = new File(selectFolder() + "\\systemLog.txt");
 		if (systemLogFile.exists()) {
 			systemLogFile.delete();
 		}
@@ -70,7 +56,7 @@ public class SystemLogger {
 		//For each is necessary in order to access each file root (C drive, D drive, etc.):
 		for (File root: roots) {
 			writer.write("File system root: " + root.getAbsolutePath() + "\n");
-		    writer.write(String.format("Total space: %d B (%.3f GB)\n", root.getTotalSpace(), toGB(root.getTotalSpace())));
+		    writer.write(String.format("Total space: %d B, (%.3f GB)\n", root.getTotalSpace(), toGB(root.getTotalSpace())));
 		    writer.write(String.format("Free space: %d B, (%.3f GB)\n", root.getFreeSpace(), toGB(root.getFreeSpace())));
 		    writer.write(String.format("Used space: %d B, (%.3f GB)\n", root.getTotalSpace()-root.getFreeSpace(), toGB(root.getTotalSpace()-root.getFreeSpace())) + "\n");
 		}
@@ -93,6 +79,37 @@ public class SystemLogger {
 	 */
 	public static double toGB(long bytes) {
 		return bytes / 1024.0 / 1024.0 / 1024.0;
+	}
+	
+	public static String selectFolder() {
+	    final JFileChooser chooser = new JFileChooser() {
+	        /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public void approveSelection() {
+	            if (getSelectedFile().isFile()) {
+	                return;
+	            } else
+	                super.approveSelection();
+	        }
+	    };
+
+	    chooser.setCurrentDirectory(new java.io.File("."));
+	    chooser.setDialogTitle("Select Folder for System Log File");
+	    chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
+	    chooser.setAcceptAllFileFilterUsed(true);
+
+	    chooser.setSelectedFile(new java.io.File("."));
+	    chooser.showOpenDialog(null);
+	    File x = chooser.getSelectedFile();
+
+	    if (x != null)
+	        return x.toString();
+
+	    return null;
 	}
 
 }
