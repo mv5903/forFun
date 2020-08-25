@@ -3,8 +3,14 @@ package forFun;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
-
-public class minecraft {
+/**
+ * Generates random strings of a variable length. Used in Minecraft for the
+ * April fools update where writing this contents would teleport you to a 
+ * randomly generated dimension.
+ * @author matt
+ *
+ */
+public class Minecraft {
 	public static void main(String[] args) {
 		String toCopy = "";
 		for (int i = 0; i < (int)(Math.random()*100); i++) {

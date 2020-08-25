@@ -4,7 +4,11 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
-
+/**
+ * Used for a GUI file chooser in som eof these projects. Not meant to be run from here.
+ * @author matt
+ *
+ */
 public class FileChooser extends JPanel implements ActionListener {
 	/**
 	 * 

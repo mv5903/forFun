@@ -23,12 +23,14 @@ public class SystemLogger {
 		FileWriter writer;
 		System.out.println("Choose a folder to store the System Log text file...");
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(500);
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			systemLogFile = new File(selectFolder() + "\\systemLog.txt");
 		}
 		//Create the file:
-		systemLogFile = new File(selectFolder() + "\\systemLog.txt");
+		
 		if (systemLogFile.exists()) {
 			systemLogFile.delete();
 		}
