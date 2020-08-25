@@ -1,7 +1,11 @@
 package forFun;
 
 import java.text.DecimalFormat;
-
+/**
+ * Prints out the points for a polar graph given a trigonometric equation.
+ * @author matt
+ *
+ */
 public class Polar {
 
 	public static void main(String[] args) {

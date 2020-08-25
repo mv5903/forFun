@@ -1,7 +1,12 @@
 package forFun;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Finds the shortest distance between any number of points. It will
+ * give the two points with the shortest distance.
+ * @author matt
+ *
+ */
 public class ShortestDistanceMultiplePoints {
 	public static double distance;
 	public static Point shortestPoints;

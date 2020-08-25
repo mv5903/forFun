@@ -1,5 +1,9 @@
 package forFun;
-
+/**
+ * Print it out, it just shows butter in a rectangle.
+ * @author matt
+ *
+ */
 public class Butter {
 
 	public static void main(String[] args) {

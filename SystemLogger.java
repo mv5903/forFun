@@ -12,6 +12,7 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 /**
  * Logs all system information to one text file of the users choosing, based on a particular path.
+ * Look for a python version here, too.
  * @author matt
  *
  */

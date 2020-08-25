@@ -3,7 +3,12 @@ package forFun;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Semi-working box plot displays given data points. May not work well with 
+ * very high differences in points.
+ * @author matt
+ *
+ */
 public class BoxPlot {
 
 	public static double min, max, q1, q3, iqr, median, range, mean, sd;

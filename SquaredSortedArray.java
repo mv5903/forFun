@@ -1,7 +1,11 @@
 package forFun;
 
 import java.util.Arrays;
-
+/**
+ * Sorts and squares a random array.
+ * @author matt
+ *
+ */
 public class SquaredSortedArray {
 
 	public static void main(String[] args) {

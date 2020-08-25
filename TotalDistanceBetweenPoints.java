@@ -2,7 +2,11 @@ package forFun;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Finds the total distance between multiple points.
+ * @author matt
+ *
+ */
 public class TotalDistanceBetweenPoints {
 	static Scanner kbd = new Scanner(System.in);
 

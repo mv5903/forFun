@@ -1,5 +1,9 @@
 package forFun;
-
+/**
+ * Point class used for several programs in this package.
+ * @author matt
+ *
+ */
 public class Point {
 
 	private double x;

@@ -1,7 +1,11 @@
 package forFun;
 
 import java.util.Scanner;
-
+/**
+ * Prints the Van Neck sequence up until a given length;
+ * @author matt
+ *
+ */
 public class VaneckSequence {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
