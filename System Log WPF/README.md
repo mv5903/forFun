@@ -1,1 +1,1 @@
-## Executable (.exe) located in debug folder
+## Executable (.exe) located in bin/debug folder
