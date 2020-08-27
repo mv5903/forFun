@@ -1,0 +1,15 @@
+C:\Users\matt\source\repos\System Log WPF\bin\Debug\System Log WPF.exe.config
+C:\Users\matt\source\repos\System Log WPF\bin\Debug\System Log WPF.exe
+C:\Users\matt\source\repos\System Log WPF\bin\Debug\System Log WPF.pdb
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\System Log WPF.csprojAssemblyReference.cache
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\MainWindow.g.cs
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\App.g.cs
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\System Log WPF_MarkupCompile.cache
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\System Log WPF_MarkupCompile.lref
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\MainWindow.baml
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\System Log WPF.g.resources
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\System_Log_WPF.Properties.Resources.resources
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\System Log WPF.csproj.GenerateResource.cache
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\System Log WPF.csproj.CoreCompileInputs.cache
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\System Log WPF.exe
+C:\Users\matt\source\repos\System Log WPF\obj\Debug\System Log WPF.pdb
