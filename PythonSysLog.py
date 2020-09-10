@@ -5,7 +5,6 @@ from datetime import datetime
 from tkinter import Tk
 from tkinter.filedialog import askdirectory
 from psutil import virtual_memory
-from tensorflow.python.client import device_lib
 
 
 #Ask user for folder location and create File Writer
@@ -33,10 +32,6 @@ def get_cpu_type():
     cpus = root_winmgmts.ExecQuery("Select * from Win32_Processor")
     return cpus[0].Name
 
-def get_available_gpus():
-    local_device_protos = device_lib.list_local_devices()
-    return [x.name for x in local_device_protos if x.device_type == 'GPU']
-
 #Variale Imports
 uname = platform.uname()
 boot_time_timestamp = psutil.boot_time()
@@ -59,7 +54,6 @@ with open(path, "w") as f:
     print(f"Machine: {uname.machine}")
     print(f"Processor: {get_cpu_type()} ({psutil.cpu_count(logical=False)} cores)")
     print(f"RAM: {get_size(mem.available)}/{get_size(mem.total)} ({get_percent(mem.available, mem.total)}%)")
-    print(f"Device(s): {device_lib.list_local_devices()}")
 
     print("="*40, "Boot Time", "="*40)
     print(f"Boot Time: {bt.year}/{bt.month}/{bt.day} {bt.hour}:{bt.minute}:{bt.second}")
