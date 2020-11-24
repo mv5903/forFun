@@ -17,13 +17,13 @@ public class ShortestDistanceMultiplePoints {
 		while (true) {
 			System.out.println("X-Value: ");
 			String tempX = s.nextLine();
-			if (tempX.equals("stop") || tempX.equals("STOP")) {
+			if (tempX.equalsIgnoreCase("stop")) {
 				System.out.println("Calculating answer...");
 				break;
 			}
 			System.out.println("Y-Value: ");
 			String tempY = s.nextLine();
-			if (tempY.equals("stop") || tempY.equals("STOP")) {
+			if (tempY.equalsIgnoreCase("stop")) {
 				System.out.println("Ignoring previous x input. Calculating answer...");
 				break;
 			}
