@@ -3,9 +3,11 @@ package forFun;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 /**
- * Semi-working box plot displays given data points. May not work well with 
- * very high differences in points.
+ * Semi-working box plot displays given data points. May not work well with very
+ * high differences in points.
+ * 
  * @author matt
  *
  */
@@ -22,7 +24,7 @@ public class BoxPlot {
 			data.add(Double.parseDouble(temp));
 			temp = kbd.nextLine();
 		}
-		showWaitTimer();
+		// showWaitTimer();
 		System.out.println("You entered: " + data + "\n"
 				+ "-------------------------------------------------------------------------------------------------------------------");
 		data = sort(data);
@@ -65,13 +67,12 @@ public class BoxPlot {
 				System.out.print("--|\t");
 			} else if (max >= ranges.get(i) && max < ranges.get(i + 1)) {
 				System.out.print("|\t");
-			}
-			else {
+			} else {
 				System.out.print("\t");
 			}
 		}
 		System.out.println();
-		//Start of Line 3
+		// Start of Line 3
 		System.out.print("|");
 		for (int i = 0; i < ranges.size() - 1; i++) {
 			if (q1 >= ranges.get(i) && q1 < ranges.get(i + 1)) {
@@ -82,13 +83,12 @@ public class BoxPlot {
 				System.out.print("  |\t");
 			} else if (max >= ranges.get(i) && max < ranges.get(i + 1)) {
 				System.out.print("|\t");
-			}
-			else {
+			} else {
 				System.out.print("\t");
 			}
 		}
 		System.out.println();
-		//Start of Line 4
+		// Start of Line 4
 		System.out.print("|");
 		for (int i = 0; i < ranges.size() - 1; i++) {
 			if (q1 >= ranges.get(i) && q1 < ranges.get(i + 1)) {
@@ -99,13 +99,12 @@ public class BoxPlot {
 				System.out.print("--|\t");
 			} else if (max >= ranges.get(i) && max < ranges.get(i + 1)) {
 				System.out.print("|\t");
-			}
-			else {
+			} else {
 				System.out.print("\t");
 			}
 		}
 		System.out.println();
-		//Start of Line 5
+		// Start of Line 5
 		System.out.print("|");
 		for (int i = 0; i < ranges.size() - 1; i++) {
 			if (max >= ranges.get(i) && max < ranges.get(i + 1)) {
@@ -115,7 +114,7 @@ public class BoxPlot {
 			}
 		}
 		System.out.println();
-		//End of diagram
+		// End of diagram
 		System.out.println(
 				"\n-------------------------------------------------------------------------------------------------------------------");
 		System.out.println("Median: " + d.format(median) + "\tRange: " + d.format(range) + "\tMean: " + d.format(mean)

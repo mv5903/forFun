@@ -156,7 +156,6 @@ public class StatisticsInfo {
 				outliers.get(1).add(d);
 			}
 			
-			
 		}
 		
 	}

@@ -1,7 +1,0 @@
-CL-USER> (defun hello ()
-           (format t "Hello, World!~%"))
-HELLO
-CL-USER> (hello)
-Hello, World!
-NIL
-CL-USER> 

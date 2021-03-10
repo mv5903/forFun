@@ -1,0 +1,10 @@
+C:\Users\matt\eclipse-workspace\eclipse\src\forFun\Macro Maker WPF\MakeMacros\bin\Debug\MakeMacros.exe.config
+C:\Users\matt\eclipse-workspace\eclipse\src\forFun\Macro Maker WPF\MakeMacros\bin\Debug\MakeMacros.exe
+C:\Users\matt\eclipse-workspace\eclipse\src\forFun\Macro Maker WPF\MakeMacros\bin\Debug\MakeMacros.pdb
+C:\Users\matt\eclipse-workspace\eclipse\src\forFun\Macro Maker WPF\MakeMacros\obj\Debug\MakeMacros.csprojAssemblyReference.cache
+C:\Users\matt\eclipse-workspace\eclipse\src\forFun\Macro Maker WPF\MakeMacros\obj\Debug\MakeMacros.Form1.resources
+C:\Users\matt\eclipse-workspace\eclipse\src\forFun\Macro Maker WPF\MakeMacros\obj\Debug\MakeMacros.Properties.Resources.resources
+C:\Users\matt\eclipse-workspace\eclipse\src\forFun\Macro Maker WPF\MakeMacros\obj\Debug\MakeMacros.csproj.GenerateResource.cache
+C:\Users\matt\eclipse-workspace\eclipse\src\forFun\Macro Maker WPF\MakeMacros\obj\Debug\MakeMacros.csproj.CoreCompileInputs.cache
+C:\Users\matt\eclipse-workspace\eclipse\src\forFun\Macro Maker WPF\MakeMacros\obj\Debug\MakeMacros.exe
+C:\Users\matt\eclipse-workspace\eclipse\src\forFun\Macro Maker WPF\MakeMacros\obj\Debug\MakeMacros.pdb
