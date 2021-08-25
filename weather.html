@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Weather</title>
+</head>
+<script>
+//API Keys
+var weatherKey = '{REDACTED}';
+mapboxgl.accessToken = '{REDACTED}';
+
+
+//Used for map
+var map;
+var usrLat, usrLong;
+var retrievedCoords = false;
+
+window.onload = function getLocation() {
+    if (navigator.geolocation) {
+        retrievedCoords = true;
+        navigator.geolocation.getCurrentPosition(displayMap);
+    }  
+    //Verify that enter press clicks zip code button
+    let zipBox = document.getElementById('zip-typed');
+    zipBox.addEventListener('keyup', function(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            document.getElementById('zip-button').click();
+        }
+    });
+}
+
+function zipClicked() {
+    let zipField = document.getElementById('zip-typed');
+    let zipEntered = zipField.value;
+    if (zipEntered.length != 5) {
+        alert('Zip code must be 5 numbers!');
+        return;
+    }
+    getLatLong();
+}
+
+function displayMap(position) {
+    //Set center of map to user location, otherwise default center to middle of USA
+    usrLat = retrievedCoords ? position.coords.latitude : 40;
+    usrLong = retrievedCoords ? position.coords.longitude : -95;
+    map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/kwikmatt/cksqkm26y1df617nxyjgk17f8',
+        center: [usrLong, usrLat],
+        zoom: retrievedCoords ? 11 : 3
+    });
+    map.on('moveend', () => {
+        getZip();
+    });
+    getZip();
+}
+
+async function getZip() {
+    let lat = map.getCenter().lat;
+    let long = map.getCenter().lng;
+    let url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=' + weatherKey + '&units=imperial';
+    console.log(url);
+    let response = await fetch(url);
+    let data = await response.json();
+    let p = [];
+    let values = [
+        'Current Temperature: ' + data.main.temp + '°F',
+        'Weather Description: ' + data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.substring(1), 
+        'Feels Like: ' + data.main.feels_like + '°F',
+        'Range Today: ' + data.main.temp_min + '°F - ' + data.main.temp_max + '°F',
+        'Current Pressure: ' + data.main.pressure + 'hPa', 
+        'Current Humidity: ' + data.main.humidity + '%', 
+        'Current Wind Speed: ' + data.wind.speed + ' mph @ ' + data.wind.deg + '°'
+    ];
+    for (var i = 0; i < values.length; i++) {
+        p[i] = document.createElement('p');
+        p[i].textContent = values[i];
+    }
+    let locationHeading = document.createElement('h3');
+    locationHeading.textContent = 'Weather for ' + data.name + ':';
+    let detailsPane = document.getElementById('details');
+    $('#details').empty();
+    detailsPane.appendChild(locationHeading);
+    p.forEach(element => {
+        detailsPane.appendChild(element);
+    });
+}
+
+async function getLatLong() {
+    try {
+        let response = await fetch('https://api.openweathermap.org/data/2.5/weather?zip=' + document.getElementById('zip-typed').value + ',us&appid=' + weatherKey);
+        let data = await response.json();
+        map.setCenter([data.coord.lon, data.coord.lat]);
+        getZip();
+    } catch (e) {
+        alert('Zip code not found. Ensure it is a US zip code and try again.');
+    }
+    
+}
+</script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(45deg, rgb(46, 46, 46), rgb(34, 34, 34));
+    }
+    .container {
+        color: rgb(196, 196, 196);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    #map {
+        top: 0;
+        bottom: 0;
+    }
+    #map, #details {
+        position: absolute;
+        width: 45%;
+        height: 50%;
+        margin: 2% 2% 2% 2%;
+        border: 5px solid black;
+    }
+    #details {
+        bottom: 0;
+        float: right;
+        overflow: auto;
+        top: 0;
+        right: 10px;
+        padding: 10px;
+        font-size: 24px;
+        text-align: center;
+    }
+    #zip-entry {
+        text-align: center;
+        border: 3px dotted darkgray;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 15vh;
+        margin-top: 60vh;
+        bottom: 0;
+        width: 20%;
+    }
+    #zip-typed {
+        font-size: 36px;
+        text-align: center;
+        width: 200px;
+    }
+    #zip-button {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 24px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color:rgb(46, 46, 46);
+        color:rgb(196, 196, 196);
+        border: 2px groove rgb(88, 88, 88);
+    }
+    #zip-button:hover {
+        background-color:rgb(73, 73, 73);
+        cursor: pointer;
+    }
+    #footer {
+        bottom: 0;
+        width: 100%;
+        margin: auto;
+        position: fixed;
+        text-align: center;
+        font-size: 8px;
+    }
+    #footer a {
+        color: inherit;
+    }
+</style>
+<body>
+    <div class="container">
+        <div id="map"></div>
+        <div class="info">
+            <div id="details">
+                <h3 id="zipcode">Weather for ?</h3>
+            </div>
+        </div>
+        <div id="zip-entry">
+            <h3>You can also type a zip code below: </h3>
+            <br>
+            <input type="text" id="zip-typed"/>
+            <br>
+            <input type="button" id="zip-button" value="Submit" onclick="zipClicked()"/>
+        </div>
+        <p id="footer">
+            Weather data provided by <a href="https://openweathermap.org/" target="_blank">openweathermap</a>. Map data provided by <a href="https://www.mapbox.com/" target="_blank">mapbox</a>. &copy;2021 Matthew Vandenberg. Reuse of this page without consent is prohibited. Thank you for understanding.
+        </p>
+    </div>
+</body>
+</html>
