@@ -8,58 +8,41 @@ import java.util.Scanner;
  *
  */
 public class ShortestDistanceMultiplePoints {
-	public static double distance;
-	public static Point shortestPoints;
 	public static void main(String[] args) {
-		Scanner s = new Scanner(System.in);
-		System.out.println("Continue entering points. When finished, type \"stop\" at any time.");
-		ArrayList<Point> p = new ArrayList<Point>();
+		Scanner kbd = new Scanner(System.in);
+		ArrayList<Point> points = new ArrayList<Point>();
+		System.out.println("Shortest distance between infinite points. Use stop to stop.");
+		int counter = 1;
 		while (true) {
-			System.out.println("X-Value: ");
-			String tempX = s.nextLine();
-			if (tempX.equalsIgnoreCase("stop")) {
-				System.out.println("Calculating answer...");
-				break;
-			}
-			System.out.println("Y-Value: ");
-			String tempY = s.nextLine();
-			if (tempY.equalsIgnoreCase("stop")) {
-				System.out.println("Ignoring previous x input. Calculating answer...");
-				break;
-			}
-			p.add(new Point(Double.parseDouble(tempX), (Double.parseDouble(tempY))));
+			System.out.print("Enter X" + counter + ": ");
+			String xStr = kbd.next();
+			if (xStr.equalsIgnoreCase("stop")) break;
+			double x = Double.parseDouble(xStr);
+			System.out.print("Enter Y" + counter + ": ");
+			String yStr = kbd.next();
+			if (yStr.equalsIgnoreCase("stop")) break;
+			double y = Double.parseDouble(yStr);
+			points.add(new Point(x, y, counter));
+			counter++;
 		}
-		calculate(p);
-		if (p.size() > 2) {
-			System.out.println("The shortest distance is between points " + p.get((int)(shortestPoints.getX())) 
-			+ " and " + p.get((int)(shortestPoints.getY()))
-			+ ". \nDistance: " + p.get((int)(shortestPoints.getX())).distanceBetween(p.get((int)(shortestPoints.getY()))));
-		} else if (p.size() == 2) {
-			System.out.println("Distance between these two points: " + p.get(0).distanceBetween(p.get(1)));
-		} else {
-			System.out.println("An unknown error occurred either because you didn't input enough points or you inputted a"
-					+ " foreign character.");
+		if (points.size() < 2) {
+			System.err.println("Not enough points! Exiting.");
+			System.exit(0);
 		}
-		s.close();
-	}
-	public static double calculate(ArrayList<Point> p) {
-		if (p.size() == 2) {
-			return p.get(0).distanceBetween(p.get(1));
-		}
-		double min = p.get(0).distanceBetween(p.get(1));
-		double tempDistance;
-		shortestPoints = new Point(0, 1);
-		for (int i = 0; i < p.size(); i++) {
-			for (int j = 0; j < p.size(); j++) {
-				tempDistance = p.get(i).distanceBetween(p.get(j));
-				if (tempDistance < min && tempDistance != 0) {
-					min = tempDistance;
-					shortestPoints.setX(i);
-					shortestPoints.setY(j);
+		double shortestDistance = points.get(0).distanceBetween(points.get(1));
+		Point a = points.get(0), b = points.get(1);
+		for (int i = 0; i < points.size(); i++) {
+			for (int j = 0; j < points.size(); j++) {
+				if (i == j) continue;
+				double tempDistance = points.get(i).distanceBetween(points.get(j));
+				if (tempDistance < shortestDistance) {
+					shortestDistance = tempDistance;
+					a = points.get(i);
+					b = points.get(j);
 				}
 			}
 		}
-		distance = min;
-		return min;
+		System.out.printf("\nThe shortest distance between two points is %.3f, and those two points are (%d)%s and (%d)%s.", shortestDistance, a.getNumber(), a, b.getNumber(), b);
+		kbd.close();
 	}
 }

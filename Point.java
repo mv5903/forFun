@@ -6,12 +6,18 @@ package forFun;
  */
 public class Point {
 
-	private double x;
-	private double y;
+	private double x, y;
+	private int number;
 	
 	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public Point(double x, double y, int number) {
+		this.x = x;
+		this.y = y;
+		this.number = number;
 	}
 	
 	public double getX() {
@@ -19,6 +25,9 @@ public class Point {
 	}
 	public double getY() {
 		return y;
+	}
+	public int getNumber() {
+		return number;
 	}
 	public void setX(double x) {
 		this.x = x;

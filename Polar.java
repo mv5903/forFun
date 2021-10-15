@@ -14,7 +14,7 @@ public class Polar {
 		
 		int degrees = 0;
 		double radians = Math.toRadians(degrees);
-		double equation = 2 + Math.sin(radians);
+		double equation = Math.cos(radians);
 		
 		for (int i = 0; i < 17; i++) {
 			System.out.print(degrees + " degrees: \t" + d.format(equation));
