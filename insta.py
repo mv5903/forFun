@@ -14,6 +14,8 @@ i = 1
 
 # Extract list of followers, then see which 'following' is not in followers list
 
+print('Login successful. This may take a while depending on how many followers/followings you have.')
+
 counter = 1
 for follower in profile.get_followers():
     print('Scraping Followers: ' + str(counter), end="\r")
