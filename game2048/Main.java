@@ -1,4 +1,4 @@
-package main;
+package game2048;
 
 public class Main {
 	private static Board board;

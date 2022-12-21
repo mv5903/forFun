@@ -1,4 +1,4 @@
-package main;
+package game2048;
 
 import java.util.HashMap;
 import java.awt.Color;
